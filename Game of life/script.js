@@ -1,3 +1,4 @@
+console.log("                 -=== Game of life v0.1 ===-");
 function matrixGenerator(matrixSize, grass, grassEater, predator, bomb, water, poisionedGrass) {
         var matrix = []
         ////  matrix սարքելու հատված
@@ -72,6 +73,7 @@ var pdGrassArr = []
 
 
 function setup() {
+        //noStroke()
         frameRate(15)
         createCanvas(matrix[0].length * side, matrix.length * side)
         for (let y = 0; y < matrix.length; y++) {
