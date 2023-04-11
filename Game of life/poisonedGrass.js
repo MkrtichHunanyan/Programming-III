@@ -1,4 +1,4 @@
-class PoisionedGrass {
+module.export = class PoisionedGrass extends LivingCreature{
     constructor(x, y) {
         this.x = x
         this.y = y

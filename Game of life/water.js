@@ -1,4 +1,4 @@
-class Water{
+module.export = class Water extends LivingCreature{
     constructor(x,y){
         this.x = x
         this.y = y
