@@ -1,17 +1,16 @@
 module.export = class PoisionedGrass extends LivingCreature{
     constructor(x, y) {
-        this.x = x
-        this.y = y
+        super(x,y)
         this.multiply = 0
         this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
+            // [this.x - 1, this.y - 1],
+            // [this.x, this.y - 1],
+            // [this.x + 1, this.y - 1],
+            // [this.x - 1, this.y],
+            // [this.x + 1, this.y],
+            // [this.x - 1, this.y + 1],
+            // [this.x, this.y + 1],
+            // [this.x + 1, this.y + 1]
         ];
     }
 
@@ -32,7 +31,7 @@ module.export = class PoisionedGrass extends LivingCreature{
     mul() {
         this.multiply++
         let emptyCell = this.chooseCell(1)
-        let newCell = random(emptyCell)
+        let newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)]
 
         if (newCell && this.multiply >= 7) {
             let newX = newCell[0]
