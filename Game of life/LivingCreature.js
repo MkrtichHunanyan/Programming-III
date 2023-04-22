@@ -1,5 +1,5 @@
-module.export = class LivingCreature {
-    constructor(x,y) {
+module.exports = class LivingCreature {
+    constructor(x, y) {
         this.x = x
         this.y = y
         this.directions = [
@@ -16,7 +16,7 @@ module.export = class LivingCreature {
 
     chooseCell(char) {
         let found = []
-     
+
         for (var i in this.directions) {
             let x = this.directions[i][0]
             let y = this.directions[i][1]

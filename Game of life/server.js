@@ -17,7 +17,6 @@ server.listen(3000, function () {
 
 function matrixGenerator(matrixSize, grass, grassEater, predator, bomb, water, poisionedGrass) {
     var matrix = []
-    ////  matrix սարքելու հատված
     for (let i = 0; i < matrixSize; i++) {
         matrix.push([])
         for (let j = 0; j < matrixSize; j++) {
@@ -119,9 +118,42 @@ function createObject() {
                 let pg = new PoisionedGrass(x, y)
                 pdGrassArr.push(pg)
             }
-            
+
         }
     }
+    io.sockets.emit("send matrix", matrix)
 }
 
-io.sockets.emit("send matrix", matrix)
+function game() {
+    for (let i in grassArr) {
+        grassArr[i].mul()
+    }
+    for (let i in grassEaterArr) {
+        grassEaterArr[i].eat()
+    }
+    for (let i in predatorArr) {
+        predatorArr[i].eat()
+    }
+    for (let i in bombArr) {
+        bombArr[i].skan()
+    }
+    for (let i in explotion1Arr) {
+        explotion1Arr[i].destroy()
+    }
+    for (let i in explotion2Arr) {
+        explotion2Arr[i].suicide()
+    }
+    for (let i in waterArr) {
+        waterArr[i].fill()
+    }
+    for (let i in pdGrassArr) {
+        pdGrassArr[i].mul()
+    }
+    io.sockets.emit("send matrix", matrix)
+}
+
+setInterval(game,300)
+
+io.on('connection',function () {
+    createObject()
+})

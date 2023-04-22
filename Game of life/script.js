@@ -1,15 +1,16 @@
 console.log("                 -=== Game of life v0.1 ===-");
 
-let side = 30
+var socket = io()
+var side = 30
 
 
 function setup() {
-        //noStroke()
-        createCanvas(25*side, 25*side)
+        // noStroke()
+        createCanvas(25 * side, 25 * side)
 }
 
 
-function draw() {
+function changeColor(matrix) {
         for (let y = 0; y < matrix.length; y++) {
                 for (let x = 0; x < matrix[y].length; x++) {
                         if (matrix[y][x] == 1) {
@@ -43,48 +44,25 @@ function draw() {
 
                 }
         }
-
-        for (let i in grassArr) {
-                grassArr[i].mul()
-        }
-        for (let i in grassEaterArr) {
-                grassEaterArr[i].eat()
-        }
-        for (let i in predatorArr) {
-                predatorArr[i].eat()
-        }
-        for (let i in bombArr) {
-                bombArr[i].skan()
-        }
-        for (let i in explotion1Arr) {
-                explotion1Arr[i].destroy()
-        }
-        for (let i in explotion2Arr) {
-                explotion2Arr[i].suicide()
-        }
-        for (let i in waterArr) {
-                waterArr[i].fill()
-        }
-        for (let i in pdGrassArr) {
-                pdGrassArr[i].mul()
-        }
 }
+
+socket.on("send matrix", changeColor)
 
 var qanak;
 function getFormValue(form) {
         qanak = form.inputbox.value;
 }
 
-function addChar(n,ob,arr) {
-        if(qanak>0){
-                for(let i = 0; i < qanak;i++){
+function addChar(n, ob, arr) {
+        if (qanak > 0) {
+                for (let i = 0; i < qanak; i++) {
                         let x = Math.floor(Math.random() * 25)
                         let y = Math.floor(Math.random() * 25)
                         matrix[y][x] = n
-                        let gr = new ob(x,y)
+                        let gr = new ob(x, y)
                         arr.push(gr)
                 }
-        }else{
-                alert("["+qanak+"]-@ chi krna exni qanak")
+        } else {
+                alert("[" + qanak + "]-@ chi krna exni qanak")
         }
 }
