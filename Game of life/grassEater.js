@@ -82,8 +82,8 @@ module.exports = class GrassEater extends LivingCreature{
         let emptyCell = this.chooseCell(0)
         let newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)]
         let emptyCell1 = this.chooseCell(6)
-        let newCell1 = random(emptyCell1)
-
+        let newCell1 = emptyCell1[Math.floor(Math.random() * emptyCell1.length)]
+        // random-ը p5-ից է ))
         if (newCell) {
             let newX = newCell[0]
             let newY = newCell[1]

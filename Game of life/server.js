@@ -152,8 +152,49 @@ function game() {
     io.sockets.emit("send matrix", matrix)
 }
 
+
+// Սերվերում ավելացնում ենք օբյեկտները ըստ քանակի, փոխարենը ուղարկենք օբյեկտի անունը
+// կարող ենք ուղարկել թիվը, եւ switch-ով կառավարել ծրագրի աշխատանքը
+function addChar(qanak, n) {
+    for (let i = 0; i < qanak; i++) {
+        let x = Math.floor(Math.random() * 25)
+        let y = Math.floor(Math.random() * 25)
+        matrix[y][x] = n
+        let obj = null;
+        switch (n) {
+            case 1:
+                obj = new Grass(x, y)
+                grassArr.push(obj)
+                break
+            case 2:
+                obj = new GrassEater(x, y)
+                grassEaterArr.push(obj)
+                break
+            case 3:
+                obj = new Predator(x,y)
+                predatorArr.push(obj)
+                break
+            case 4:
+                obj = new Bomb(x,y)
+                bombArr.push(obj)
+                break
+            case 5:
+                obj = new Water(x,y)
+                waterArr.push(obj)
+                break
+            case 6:
+                obj = new PoisionedGrass(x,y)
+                pdGrassArr.push(obj)
+                break
+            default:
+                console.error("nothing yet")
+        }
+    }
+}
+
 setInterval(game,300)
 
-io.on('connection',function () {
+io.on('connection',function (socket) {
+    socket.on("addChar", addChar) // ստանալ պարամետրերը եւ փոխանցել addChar ֆունկցիային
     createObject()
 })

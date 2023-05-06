@@ -1,4 +1,6 @@
-class Explotion_1{
+let Explotion_2 = require("./explotion2")
+// մոդուլները պետք է էքսպորտ անել, եւ require որտեղ օգտագործում ես
+module.exports =  class Explotion_1 {
     constructor(x,y){
         this.x = x
         this.y = y

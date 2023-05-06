@@ -1,9 +1,9 @@
 let LivingCreature = require("./LivingCreature")
-
+let Explotion_1 = require("./explotion1")
+// մոդուլները պետք է էքսպորտ անել, եւ require որտեղ օգտագործում ես
 module.exports = class Bomb extends LivingCreature{
     constructor(x, y) {
-        this.x = x
-        this.y = y
+        super(x,y)
         this.directions = [
             [this.x - 1, this.y - 1],
             [this.x    , this.y - 1],

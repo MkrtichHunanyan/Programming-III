@@ -53,16 +53,15 @@ function getFormValue(form) {
         qanak = form.inputbox.value;
 }
 
-function addChar(n, ob, arr) {
+
+// քանի որ ավելացվում են օբեկտները սերվերում, չի կարելի ֆրոտի հատվածում
+// կանչել այդ օբյեկտներին, փոխարենը ուղարկում ենք սերվերին ինֆորմացիա
+// այն մասին, թե քանի օբյեկտ, եւ ինչ օբյեկտ ենք ուզում ավելացնել
+function addChar(n) {
         if (qanak > 0) {
-                for (let i = 0; i < qanak; i++) {
-                        let x = Math.floor(Math.random() * 25)
-                        let y = Math.floor(Math.random() * 25)
-                        matrix[y][x] = n
-                        let gr = new ob(x, y)
-                        arr.push(gr)
-                }
+                socket.emit("addChar",qanak,n)
         } else {
                 alert("[" + qanak + "]-@ chi krna exni qanak")
         }
 }
+
